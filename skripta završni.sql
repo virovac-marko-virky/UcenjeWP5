@@ -57,7 +57,7 @@ values ('The Shaining','Horror',1981,105);
 select * from posudba;
 
 insert into posudba (sifrafilma,sifraclana,datumposudbe) values
-(1,1,2024-06-07),
-(1,2,2024-06-07),
-(1,3,2024-06-07);
+(1,1,'2024-06-07'),
+(1,2,'2024-06-07'),
+(1,3,'2024-06-07');
 
