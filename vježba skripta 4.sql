@@ -9,66 +9,66 @@ go
 
 use hrvatska;
 
-create table župan(
-šifra int not null primary key identity(1,1),
+create table zupan(
+sifra int not null primary key identity(1,1),
 ime varchar(50),
 prezime varchar(50)
 );
 
 
-create table županija(
-šifra int not null primary key identity(1,1),
+create table zupanija(
+sifra int not null primary key identity(1,1),
 naziv varchar(50) not null,
-župan int not null,
-foreign key (župan) references župan(šifra)
+zupan int not null,
+foreign key (zupan) references zupan(sifra)
 );
 
-create table opčina(
-šifra int not null primary key identity(1,1),
-županija int not null,
+create table opcina(
+sifra int not null primary key identity(1,1),
+zupanija int not null,
 naziv varchar(50),
-foreign key (županija) references županija(šifra)
+foreign key (zupanija) references zupanija(sifra)
 );
 
 create table mjesto(
-šifra int not null primary key identity(1,1),
-opčina int not null,
+sifra int not null primary key identity(1,1),
+opcina int not null,
 naziv varchar(50 ) not null,
-foreign key (opčina) references opčina(šifra)
+foreign key (opcina) references opcina(sifra)
 );
 
-select * from župan;
+select * from zupan;
 
-insert into župan (ime,prezime)
-values ('Marko', 'Virovac'), ('Vesna', 'Delić'), ('Mišo', 'Savanović');
+insert into zupan (ime,prezime)
+values ('Marko', 'Virovac'), ('Vesna', 'Delic'), ('Mišo', 'Savanovic');
 
-select * from županija;
+select * from zupanija;
 
-insert into županija (naziv,župan)
-values ('Zagrebačka',1), ('Osječko-baranjska',2), ('Splitsko-dalmatinska',3);
+insert into zupanija (naziv,zupan)
+values ('Zagrebacka',1), ('Osjecko-baranjska',2), ('Splitsko-dalmatinska',3);
 
-select * from opčina;
+select * from opcina;
 
-insert into opčina (županija,naziv)
+insert into opcina (zupanija,naziv)
 values (1,'Dubrava'), (1,'Dubravica'), (2,'Donji-Miholjac'), (2,'Antunovac'), (3,'Brela'), (3,'Bol');
 
 select * from mjesto;
 
-insert into mjesto (opčina,naziv)
-values (1,'Donji-Marinkovac'), (1,'Novaki'), (1,'Prosinec'), (1,'Lugarski-Breg'), (2,'Sveti Đurađ'), (2,'Viljevo'),
+insert into mjesto (opcina,naziv)
+values (1,'Donji-Marinkovac'), (1,'Novaki'), (1,'Prosinec'), (1,'Lugarski-Breg'), (2,'Sveti djuradj'), (2,'Viljevo'),
 (2,'Rakitovica'), (2,'Podravska-Moslavina'), (3,'Dugopolje'), (3,'Koprivno'), (3,'Kotlenice'), (3,'Liska');
 
 select * from mjesto;
- update mjesto set naziv = 'Črnkovci' where šifra = 5;
- update mjesto set naziv = 'Veliškovci' where šifra = 6;
- update mjesto set naziv = 'Zagreb' where šifra = 1;
- update mjesto set naziv = 'Karlovac' where šifra = 2;
- update mjesto set naziv = 'Split' where šifra = 4;
+ update mjesto set naziv = 'Crnkovci' where sifra = 5;
+ update mjesto set naziv = 'Veliskovci' where sifra = 6;
+ update mjesto set naziv = 'Zagreb' where sifra = 1;
+ update mjesto set naziv = 'Karlovac' where sifra = 2;
+ update mjesto set naziv = 'Split' where sifra = 4;
 
- select * from opčina;
+ select * from opcina;
 
- delete from opčina where šifra = 5;
- delete from opčina where šifra = 6;
+ delete from opcina where sifra = 5;
+ delete from opcina where sifra = 6;
 
 
 
