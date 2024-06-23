@@ -26,9 +26,7 @@ create table posudba(
 sifra int not null primary key identity(1,1),
 sifraclana int,
 sifrafilma int,
-datumposudbe datetime,
-FOREIGN KEY (sifrafilma) REFERENCES filmovi(sifra),
-FOREIGN KEY (sifraclana) REFERENCES clanovi(sifra)
+datumposudbe datetime
 );
 
 alter table posudba add foreign key (sifrafilma) references filmovi(sifra);
@@ -36,13 +34,14 @@ alter table posudba add foreign key (sifraclana) references clanovi(sifra);
 
 select * from clanovi;
 
--- 1 - 30
+insert into clanovi (ime,prezime,email)
+values ('Marko','Virovac','marko@gmail.com');
+insert into clanovi (ime,prezime,email)
+values ('Vesna','Delić','vesnad@gmail.com');
+insert into clanovi (ime,prezime,email)
+values ('Vladimir','Bajtl','vladbajtl@gmail.com');
 
-insert into clanovi (ime, prezime, email) VALUES
-('Marko', 'Virovac', 'marko@gmail.com'),
-('Vesna', 'Delić', 'vesnad@gmail.com'),
-('Vladimir', 'Bajtl', 'vladbajtl@gmail.com'),
-('ČŠĆĐŽ', 'čšćđž', NULL);
+insert into clanovi (ime) values ('ČŠĆĐŽ čšćđž');
 
 
 select * from filmovi;
@@ -54,10 +53,63 @@ values ('Alien','SC-FI',1980,119);
 insert into filmovi (naziv,zanr,godinaizdanja,vrijemetrajanja)
 values ('The Shaining','Horror',1981,105);
 
-select * from posudba;
 
-insert into posudba (sifrafilma,sifraclana,datumposudbe) values
-(1,1,'2024-06-07'),
-(1,2,'2024-06-07'),
-(1,3,'2024-06-07');
+
+insert into posudba (sifraclana, sifrafilma, datumposudbe)
+values (1, 1, '2023-01-01'),
+       (1, 2, '2023-01-02'),
+       (2, 1, '2023-01-03'),
+       (3, 3, '2023-01-04');
+
+
+
+select c.ime as clan, f.naziv as film, p.datumposudbe
+from clanovi c
+inner join posudba p on c.sifra = p.sifraclana
+inner join filmovi f on p.sifrafilma = f.sifra;
+
+select c.ime as clan, f.naziv as film, p.datumposudbe
+from clanovi c
+left join posudba p on c.sifra = p.sifraclana
+left join filmovi f on p.sifrafilma = f.sifra;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
